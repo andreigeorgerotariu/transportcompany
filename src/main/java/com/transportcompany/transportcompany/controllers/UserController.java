@@ -16,12 +16,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
     @GetMapping("")
-    public List<User> getAllClients() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @PutMapping("/api/clients/{id}")
-    public ResponseEntity<User> updateClient(@PathVariable Long id, @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
         Optional<User> user;
         user = User.findById(id);
         if (user.isPresent()) {

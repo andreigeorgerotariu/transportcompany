@@ -22,12 +22,5 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    public static Optional<User> findById(Long id) {
-        return null;
-    }
-
-    public static Object save(User updatedUser) {
-        return null;
-    }
 }
 

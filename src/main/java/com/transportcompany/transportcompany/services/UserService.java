@@ -8,6 +8,5 @@ public interface UserService {
 
     UserDTO updateClient(UserDTO userDTO);
     List<UserDTO> getAllUsers();
-
     List<UserDTO> getUsers();
 }

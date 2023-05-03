@@ -1,24 +1,28 @@
 package com.transportcompany.transportcompany.controllers;
+
 import com.transportcompany.transportcompany.models.dtos.UserDTO;
+import com.transportcompany.transportcompany.models.entities.Order;
 import com.transportcompany.transportcompany.models.entities.User;
 import com.transportcompany.transportcompany.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 public class UserController {
 
-    @GetMapping ("/api/users")
-    public List <UserDTO>getUsers() {return userService.getUsers();
+    @GetMapping("/api/users")
+    public List<UserDTO> getUsers() {
+        return userService.getUsers();
     }
 
     @Autowired
     private UserRepository userRepository;
-    @GetMapping("")
+
+    @GetMapping()
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -32,5 +36,5 @@ public class UserController {
             return ResponseEntity.ok((User) User.save(updatedUser));
         } else {
             return ResponseEntity.notFound().build();
+        }
     }
-}

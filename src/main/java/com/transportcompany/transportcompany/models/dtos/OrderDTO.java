@@ -1,5 +1,19 @@
 package com.transportcompany.transportcompany.models.dtos;
 
-public class OrderDTO  {
+import java.io.Serializable;
+
+public class OrderDTO implements Serializable {
+
+    private String OrderId;
+
+
+
+
+
+
+
+
+
+
 
 }

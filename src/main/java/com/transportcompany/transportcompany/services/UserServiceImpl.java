@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
         return usersFoundDTO;
     }
 
-    public void deleteUserById(long id) {
+    public void deleteUserById(long id)  {
 
         userRepository.deleteById(id);
     }

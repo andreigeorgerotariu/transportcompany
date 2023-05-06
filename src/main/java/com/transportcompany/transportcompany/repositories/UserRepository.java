@@ -9,9 +9,5 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    static User save(UserDTO userToSave) {
-        return null;
-    }
 
-    List<UserDTO> getUsers();
 }

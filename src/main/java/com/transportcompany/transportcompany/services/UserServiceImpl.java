@@ -28,12 +28,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
-        if (!userDTO.getEmail().contains("@")) {
-            throw new UserCreateException("Invalid email format.");
-        }
+        validUserEmail(userDTO.getEmail());
         User userToSave = objectMapper.convertValue(userDTO, User.class);
         User userSaved = userRepository.save(userToSave);
         return objectMapper.convertValue(userSaved, UserDTO.class);
+    }
+
+    private void validUserEmail(String email) {
+        if (!email.contains("@")) {
+            throw new UserCreateException("Invalid email format.");
+        }
     }
 
     @Override

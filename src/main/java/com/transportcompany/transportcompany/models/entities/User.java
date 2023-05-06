@@ -15,7 +15,6 @@ import java.util.Optional;
 @NoArgsConstructor
 @Table(name ="user_table")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

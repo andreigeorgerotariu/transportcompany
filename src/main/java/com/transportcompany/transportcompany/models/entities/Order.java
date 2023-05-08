@@ -1,9 +1,6 @@
 package com.transportcompany.transportcompany.models.entities;
 
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 
 @Entity

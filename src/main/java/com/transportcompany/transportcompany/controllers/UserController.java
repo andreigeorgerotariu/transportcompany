@@ -1,40 +1,43 @@
 package com.transportcompany.transportcompany.controllers;
 
 import com.transportcompany.transportcompany.models.dtos.UserDTO;
-import com.transportcompany.transportcompany.models.entities.Order;
-import com.transportcompany.transportcompany.models.entities.User;
-import com.transportcompany.transportcompany.repositories.UserRepository;
+import com.transportcompany.transportcompany.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UserController {
 
-    @GetMapping("/api/users")
-    public List<UserDTO> getUsers() {
-        return userService.getUsers();
-    }
+    private final UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping()
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @PutMapping("/api/clients/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
-        Optional<User> user;
-        user = User.findById(id);
-        if (user.isPresent()) {
-            updatedUser.setId(id);
-            return ResponseEntity.ok((User) User.save(updatedUser));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PostMapping("/api/users")
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.createUser(userDTO));
     }
+
+    @GetMapping("/api/users")
+    public ResponseEntity<List<UserDTO>> getUsers() {
+        List<UserDTO> users = userService.getUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    @PutMapping("/api/users/{userid}")
+    public ResponseEntity<UserDTO> updateUserById(@PathVariable long userId, @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.updateUserById(userId, userDTO));
+    }
+
+    @DeleteMapping("/api/users/{userid}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable long userId) {
+        userService.deleteUserById(userId);
+        return ResponseEntity.noContent().build();
+    }
+}
+

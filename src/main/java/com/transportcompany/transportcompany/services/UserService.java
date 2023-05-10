@@ -8,7 +8,7 @@ public interface UserService {
 
     UserDTO createUser(UserDTO userDTO);
 
-    UserDTO updateUserById(long userId, UserDTO userDTO) throws Throwable;
+    UserDTO updateUserById(long userId, UserDTO userDTO);
 
     void deleteUserById(long id);
 

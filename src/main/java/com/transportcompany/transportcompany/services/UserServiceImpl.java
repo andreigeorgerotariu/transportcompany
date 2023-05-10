@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUserById(long userId, UserDTO userDTO) throws Throwable {
+    public UserDTO updateUserById(long userId, UserDTO userDTO) {
         User userFound = (User) userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         userFound.setName(userDTO.getName());

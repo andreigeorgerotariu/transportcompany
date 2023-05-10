@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name ="user_table")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
-public class User extends Order {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

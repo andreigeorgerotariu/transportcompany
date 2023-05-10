@@ -5,19 +5,26 @@ import com.transportcompany.transportcompany.exceptions.OrderNotFoundException;
 import com.transportcompany.transportcompany.models.dtos.OrderDTO;
 import com.transportcompany.transportcompany.models.entities.Order;
 import com.transportcompany.transportcompany.repositories.OrderRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public  class OrderServiceImpl implements OrderService {
+@Slf4j
+@Service
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final ObjectMapper objectMapper;
 
+    @Autowired
     public OrderServiceImpl(OrderRepository orderRepository, ObjectMapper objectMapper) {
         this.orderRepository = orderRepository;
         this.objectMapper = objectMapper;
     }
+
     @Override
     public OrderDTO createOrder(OrderDTO orderDTO) {
         Order orderToSave = objectMapper.convertValue(orderDTO, Order.class);
@@ -26,15 +33,15 @@ public  class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDTO> getOrders() {
-        List<Order> orders = orderRepository.findAll();
-        return orders.stream()
+    public List<OrderDTO> getAllOrders() {
+        return orderRepository.findAll().stream()
                 .map(order -> objectMapper.convertValue(order, OrderDTO.class))
                 .collect(Collectors.toList());
     }
 
+
     @Override
-    public Order updateOrderById(long orderId, OrderDTO orderDTO) throws Throwable {
+    public Order updateOrderById(long orderId, OrderDTO orderDTO) {
         Order orderFound = (Order) orderRepository.findById(orderId)
                 .orElseThrow(() -> new OrderNotFoundException("Order", "id", orderId));
         orderFound.setNumberOfSeats(orderDTO.getNumberOfSeats());

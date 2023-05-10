@@ -13,29 +13,30 @@ import java.util.List;
 @RequestMapping("/api/orders")
 public class OrderController {
 
+    private final OrderService orderService;
     @Autowired
-    private OrderService orderService;
-
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
-    @PostMapping
-    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO, Object OrderDTO) {
+    @PostMapping("/api/orders")
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         return ResponseEntity.ok(orderService.createOrder(orderDTO));
     }
 
-    @GetMapping("api/order")
-    public ResponseEntity<List<OrderDTO>> getOrders() {
-        List<OrderDTO> orders = orderService.getOrders();
+    @GetMapping("api/orders")
+    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+        List<OrderDTO> orders = orderService.getAllOrders();
         return ResponseEntity.ok(orders);
     }
 
-    @PutMapping("/api/order/{orderid}")
-    public ResponseEntity<Order> updateOrderById(@PathVariable long orderId, @RequestBody OrderDTO orderDTO) throws Throwable {
-        return ResponseEntity.ok(orderService.updateOrderById(orderId, orderDTO));
+    @PutMapping("/api/orders/{orderId}")
+    public ResponseEntity<Order> updateOrderById(@PathVariable long orderId, @RequestBody OrderDTO orderDTO) {
+        Order updatedOrder = orderService.updateOrderById(orderId, orderDTO);
+        return ResponseEntity.ok(updatedOrder);
     }
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("/api/orders/{orderId}")
     public ResponseEntity<Void> deleteOrderById(@PathVariable long orderId) {
         orderService.deleteOrderById(orderId);
         return ResponseEntity.noContent().build();

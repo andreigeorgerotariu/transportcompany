@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "vehicle")
+@Table (name = "vehicles")
 public class Vehicle {
     private Long id;
     @Column(name = "type")

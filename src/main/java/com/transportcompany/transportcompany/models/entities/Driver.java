@@ -2,8 +2,8 @@ package com.transportcompany.transportcompany.models.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "driver")
-public class Drivers {
+@Table(name = "drivers")
+public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;

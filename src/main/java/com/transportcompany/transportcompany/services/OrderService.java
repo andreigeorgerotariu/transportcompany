@@ -8,8 +8,8 @@ import java.util.List;
 public interface OrderService {
 
     OrderDTO createOrder(OrderDTO orderDTO);
-    List<OrderDTO> getOrders();
-    Order updateOrderById(long orderId, OrderDTO orderDTO) throws Throwable;
+    List<OrderDTO> getAllOrders();
+    Order updateOrderById(long orderId, OrderDTO orderDTO);
     void deleteOrderById(long orderId);
 
 }

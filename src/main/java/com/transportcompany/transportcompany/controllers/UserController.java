@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PutMapping("/api/users/{userid}")
-    public ResponseEntity<UserDTO> updateUserById(@PathVariable long userId, @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> updateUserById(@PathVariable long userId, @RequestBody UserDTO userDTO) throws Throwable {
         return ResponseEntity.ok(userService.updateUserById(userId, userDTO));
     }
 

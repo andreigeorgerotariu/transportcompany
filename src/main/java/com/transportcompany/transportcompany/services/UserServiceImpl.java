@@ -28,26 +28,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
-        validUserEmail(userDTO.getEmail());
-        User userToSave = objectMapper.convertValue(userDTO, User.class);
-        User userSaved = userRepository.save(userToSave);
-        return objectMapper.convertValue(userSaved, UserDTO.class);
-    }
-
-    private void validUserEmail(String email) {
-        if (!email.contains("@")) {
+        if (!userDTO.getEmail().contains("@")) {
             throw new UserCreateException("Invalid email format.");
         }
+        User userToSave = objectMapper.convertValue(userDTO, User.class);
+        User userSaved = (User) userRepository.save(userToSave);
+        return objectMapper.convertValue(userSaved, UserDTO.class);
     }
 
     @Override
     public UserDTO updateUserById(long userId, UserDTO userDTO) {
-        User userFound = userRepository.findById(userId)
+        User userFound = (User) userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         userFound.setName(userDTO.getName());
         userFound.setAddress(userDTO.getAddress());
         userFound.setEmail(userDTO.getEmail());
-        User userSaved = userRepository.save(userFound);
+        User userSaved = (User) userRepository.save(userFound);
         return objectMapper.convertValue(userSaved, UserDTO.class);
     }
 

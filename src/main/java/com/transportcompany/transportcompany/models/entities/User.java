@@ -7,14 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Optional;
-
-@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="user_table")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

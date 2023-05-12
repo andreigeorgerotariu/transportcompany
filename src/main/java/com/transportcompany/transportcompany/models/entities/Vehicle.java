@@ -1,16 +1,18 @@
 package com.transportcompany.transportcompany.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
-@Table (name = "vehicles")
+@Table(name = "vehicles")
 public class Vehicle {
-    private Long id;
-    @Column(name = "type")
-    private String type;
-    @Column(name = "number_of_seats")
-    private String numberOfSeats;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(name = "vehicle_type")
+    private String vehicleType;
+    @Column(name = "seat_capacity")
+    private int seatCapacity;
 }

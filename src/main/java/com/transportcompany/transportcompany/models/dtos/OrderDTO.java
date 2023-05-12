@@ -2,7 +2,6 @@ package com.transportcompany.transportcompany.models.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,11 +11,11 @@ public class OrderDTO implements Serializable {
     private long orderId;
 
     @NotNull(message = "Number of seats is required")
-    private Integer numberOfSeats;
+    private int numberOfSeats;
 
     @NotNull(message = "Departure time is required")
-    private LocalDateTime timeOfDeparture;
+    private LocalDateTime departureTime;
 
     @NotNull(message = "Arrival time is required")
-    private LocalDateTime timeOfArrival;
+    private LocalDateTime arrivalTime;
 }

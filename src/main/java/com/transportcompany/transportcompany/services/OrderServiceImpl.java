@@ -29,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO createOrder(OrderDTO orderDTO) {
         Order orderToSave = objectMapper.convertValue(orderDTO, Order.class);
         Object orderSaved = orderRepository.save(orderToSave);
+        log.info("Order created: " + orderDTO);
         return objectMapper.convertValue(orderSaved, OrderDTO.class);
     }
 
@@ -36,23 +37,23 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> getAllOrders() {
         return orderRepository.findAll().stream()
                 .map(order -> objectMapper.convertValue(order, OrderDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
-
 
     @Override
     public Order updateOrderById(long orderId, OrderDTO orderDTO) {
-        Order orderFound = (Order) orderRepository.findById(orderId)
+        Order orderFound = orderRepository.findById(orderId)
                 .orElseThrow(() -> new OrderNotFoundException("Order", "id", orderId));
-        orderFound.setNumberOfSeats(orderDTO.getNumberOfSeats());
-        orderFound.setTimeOfDeparture(orderDTO.getTimeOfDeparture());
-        orderFound.setTimeOfArrival(orderDTO.getTimeOfArrival());
-        Order updatedOrder = (Order) orderRepository.save(orderFound);
+        orderFound.setDepartureTime(orderDTO.getDepartureTime());
+        orderFound.setArrivalTime(orderDTO.getArrivalTime());
+        Order updatedOrder = orderRepository.save(orderFound);
+        log.info("Order updated: " + orderDTO);
         return updatedOrder;
     }
 
     @Override
     public void deleteOrderById(long orderId) {
+        log.info("Order with id " + orderId + " was deleted.");
         orderRepository.deleteById(orderId);
     }
 }

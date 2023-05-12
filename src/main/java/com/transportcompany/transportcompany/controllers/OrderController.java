@@ -14,29 +14,29 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
-    @PostMapping("/api/orders")
+    @PostMapping
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         return ResponseEntity.ok(orderService.createOrder(orderDTO));
     }
 
-    @GetMapping("api/orders")
+    @GetMapping
     public ResponseEntity<List<OrderDTO>> getAllOrders() {
-        List<OrderDTO> orders = orderService.getAllOrders();
-        return ResponseEntity.ok(orders);
+        return ResponseEntity.ok(orderService.getAllOrders());
     }
 
-    @PutMapping("/api/orders/{orderId}")
+    @PutMapping("/{orderId}")
     public ResponseEntity<Order> updateOrderById(@PathVariable long orderId, @RequestBody OrderDTO orderDTO) {
         Order updatedOrder = orderService.updateOrderById(orderId, orderDTO);
         return ResponseEntity.ok(updatedOrder);
     }
 
-    @DeleteMapping("/api/orders/{orderId}")
+    @DeleteMapping("/{orderId}")
     public ResponseEntity<Void> deleteOrderById(@PathVariable long orderId) {
         orderService.deleteOrderById(orderId);
         return ResponseEntity.noContent().build();

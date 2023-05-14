@@ -1,23 +1,20 @@
 package com.transportcompany.transportcompany.controllers;
 
 import com.transportcompany.transportcompany.models.dtos.UserDTO;
-import com.transportcompany.transportcompany.models.entities.User;
-import com.transportcompany.transportcompany.repositories.UserRepository;
 import com.transportcompany.transportcompany.services.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.cert.Extension;
 import java.util.List;
-import java.util.Optional;
-
 
 @RestController
 public class UserController {
 
-    @Autowired
     private final UserService userService;
+
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -26,8 +23,6 @@ public class UserController {
     public  ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.createUser(userDTO));
     }
-
-
 
     @GetMapping("/api/users")
     public List<UserDTO> getUsers() {

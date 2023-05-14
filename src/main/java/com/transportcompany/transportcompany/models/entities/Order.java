@@ -13,17 +13,19 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long OrderId;
     @NotNull
-    @Column(name = "seat_number")
-    private Integer seatNumber;
-    @NotNull
-    @Column(name = "departure_time")
-    private LocalDateTime timeOfDeparture;
-    @NotNull
-    @Column(name = "arrival_time")
-    private LocalDateTime timeOfArrival;
-    private Object numberOfSeats;
+    @Column(name = "number_of_seats", columnDefinition = "INT")
+    private Integer numberOfSeats;
 
+    @Column(name = "departure_time", columnDefinition = "TIMESTAMP")
+    private LocalDateTime timeOfDeparture;
+
+    @Column(name = "arrival_time", columnDefinition = "TIMESTAMP")
+    private LocalDateTime timeOfArrival;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "costumer_order_id")
+    private User user;
 }
+
 
 
 

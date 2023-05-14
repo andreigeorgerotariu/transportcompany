@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.cert.Extension;
 import java.util.List;
 
 @RestController
@@ -24,8 +25,8 @@ public class UserController {
     }
 
     @GetMapping("/api/users")
-    public ResponseEntity<List<UserDTO>> getUsers() {
-        List<UserDTO> users = userService.getUsers();
+    public ResponseEntity<List<UserDTO>> getUsers(Extension createdUser) {
+        List<UserDTO> users = userService.getUsers(Long.parseLong(createdUser.getId()));
         return ResponseEntity.ok(users);
     }
 

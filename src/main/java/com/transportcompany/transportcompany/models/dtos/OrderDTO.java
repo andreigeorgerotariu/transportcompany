@@ -19,4 +19,5 @@ public class OrderDTO implements Serializable {
 
     @NotNull(message = "Arrival time is required")
     private LocalDateTime timeOfArrival;
+
 }

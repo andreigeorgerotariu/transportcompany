@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getUsers() {
+    public List<UserDTO> getUsers(long id) {
         List<User> usersFound = userRepository.findAll();
         List<UserDTO> usersFoundDTO = new ArrayList<>();
         usersFound.forEach(user -> usersFoundDTO.add(objectMapper.convertValue(user, UserDTO.class)));

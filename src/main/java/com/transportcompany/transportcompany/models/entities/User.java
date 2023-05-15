@@ -2,14 +2,16 @@ package com.transportcompany.transportcompany.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Optional;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
 @Entity
-@Table(name ="user")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "users")
 public class User {
 
     @Id
@@ -21,6 +23,4 @@ public class User {
     private String address;
     @Column(name = "email")
     private String email;
-
 }
-

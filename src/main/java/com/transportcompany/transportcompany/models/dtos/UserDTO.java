@@ -1,14 +1,20 @@
 package com.transportcompany.transportcompany.models.dtos;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 @Data
+@ToString
 public class UserDTO implements Serializable {
-    private long id;
-    private String name;
-    private String address;
-    private String email;
 
+    private long id;
+    @NotEmpty
+    private String name;
+    @NotEmpty
+    private String address;
+    @NotEmpty
+    private String email;
 }

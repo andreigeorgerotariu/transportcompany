@@ -10,6 +10,7 @@ import java.io.Serializable;
 @ToString
 public class UserDTO implements Serializable {
 
+    @NotEmpty
     private long id;
     @NotEmpty
     private String name;

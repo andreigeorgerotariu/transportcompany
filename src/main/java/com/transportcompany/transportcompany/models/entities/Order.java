@@ -19,4 +19,7 @@ public class Order {
     private LocalDateTime departureTime;
     @Column(name = "arrival_time")
     private LocalDateTime arrivalTime;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "costumer_order_id")
+    private User user;
 }

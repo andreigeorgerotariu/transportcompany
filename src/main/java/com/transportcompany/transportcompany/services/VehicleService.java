@@ -10,5 +10,4 @@ public interface VehicleService {
     List<VehicleDTO> getAllVehicles();
     VehicleDTO updateVehicleById (long vehicleId, VehicleDTO vehicleDTO);
     void deleteVehicleById (long vehicleId);
-
 }

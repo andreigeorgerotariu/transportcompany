@@ -20,22 +20,17 @@ public class VehicleController {
     public VehicleController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
     }
-
     @PostMapping
     public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO) {
         return ResponseEntity.ok(vehicleService.createVehicle(vehicleDTO));
     }
-
     @GetMapping
-    public ResponseEntity<List <VehicleDTO>>etAllVehicles() {
+    public ResponseEntity<List<VehicleDTO>> getAllVehicles() {
         return ResponseEntity.ok(vehicleService.getAllVehicles());
     }
-
     @DeleteMapping
     public ResponseEntity<Void> deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicleById(id);
         return ResponseEntity.noContent().build();
     }
 }
-
-

@@ -43,6 +43,8 @@ public class OrderServiceImpl implements OrderService {
     public Order updateOrderById(long orderId, OrderDTO orderDTO) {
         Order orderFound = orderRepository.findById(orderId)
                 .orElseThrow(() -> new OrderNotFoundException("Order", "id", orderId));
+        orderFound.setOrderId(orderDTO.getOrderId());
+        orderFound.setSeatNumber(orderDTO.getSeatNumber());
         orderFound.setDepartureTime(orderDTO.getDepartureTime());
         orderFound.setArrivalTime(orderDTO.getArrivalTime());
         Order updatedOrder = orderRepository.save(orderFound);

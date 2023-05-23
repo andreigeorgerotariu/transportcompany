@@ -49,7 +49,7 @@ public class VehicleServiceImpl implements VehicleService {
             log.info("Vehicle updated: " + vehicleDTO);
             return objectMapper.convertValue(savedVehicle, VehicleDTO.class);
         }
-        return null;
+        return vehicleDTO;
     }
 
     @Override

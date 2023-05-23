@@ -38,19 +38,19 @@ public class OrderServiceImplTest {
     public void testCreateOrder() {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setNumberOfSeats(2);
-        orderDTO.setTimeOfDeparture(LocalDateTime.of(2023, 5, 15, 12, 0));
-        orderDTO.setTimeOfArrival(LocalDateTime.of(2023, 5, 15, 15, 0));
+        orderDTO.setDepartureTime(LocalDateTime.of(2023, 5, 15, 12, 0));
+        orderDTO.setArrivalTime(LocalDateTime.of(2023, 5, 15, 15, 0));
 
         Order order = new Order();
-        order.setNumberOfSeats(2);
-        order.setTimeOfDeparture(LocalDateTime.of(2023, 5, 15, 12, 0));
-        order.setTimeOfArrival(LocalDateTime.of(2023, 5, 15, 15, 0));
+        order.setSeatNumber(2);
+        order.setDepartureTime(LocalDateTime.of(2023, 5, 15, 12, 0));
+        order.setArrivalTime(LocalDateTime.of(2023, 5, 15, 15, 0));
 
         Order savedOrder = new Order();
-        savedOrder.setOrderId(1L);
-        savedOrder.setNumberOfSeats(2);
-        savedOrder.setTimeOfDeparture(LocalDateTime.of(2023, 5, 15, 12, 0));
-        savedOrder.setTimeOfArrival(LocalDateTime.of(2023, 5, 15, 15, 0));
+        savedOrder.setId(1L);
+        savedOrder.setSeatNumber(2);
+        savedOrder.setDepartureTime(LocalDateTime.of(2023, 5, 15, 12, 0));
+        savedOrder.setArrivalTime(LocalDateTime.of(2023, 5, 15, 15, 0));
 
         when(orderRepository.save(order)).thenReturn(savedOrder);
         when(objectMapper.convertValue(savedOrder, OrderDTO.class)).thenReturn(orderDTO);
@@ -59,10 +59,10 @@ public class OrderServiceImplTest {
 
         verify(orderRepository, times(1)).save(order);
         verify(objectMapper, times(1)).convertValue(savedOrder, OrderDTO.class);
-        assertEquals(savedOrder.getOrderId(), createdOrderDTO.getOrderId());
-        assertEquals(savedOrder.getNumberOfSeats(), createdOrderDTO.getNumberOfSeats());
-        assertEquals(savedOrder.getTimeOfDeparture(), createdOrderDTO.getTimeOfDeparture());
-        assertEquals(savedOrder.getTimeOfArrival(), createdOrderDTO.getTimeOfArrival());
+        assertEquals(savedOrder.getId(), createdOrderDTO.getOrderId());
+        assertEquals(savedOrder.getSeatNumber(), createdOrderDTO.getNumberOfSeats());
+        assertEquals(savedOrder.getDepartureTime(), createdOrderDTO.getDepartureTime());
+        assertEquals(savedOrder.getArrivalTime(), createdOrderDTO.getArrivalTime());
     }
 }
 
